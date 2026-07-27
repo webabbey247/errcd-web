@@ -374,3 +374,26 @@ footer{grid-template-columns:1.4fr .7fr .8fr 1fr 1.6fr;gap:34px;padding:56px 5vw
   .footerOffices address+address{padding-top:17px;border-top:1px solid rgba(255,255,255,.08)}
   .copyright{grid-column:auto;margin:0;padding-top:22px}
 }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   POST-PORT ENHANCEMENT — sticky header. NOT part of the legacy stylesheet.
+
+   Everything above this line is the byte-for-byte port of assets/site.css. The
+   legacy CSS never set `position` on .siteHeader, so the header scrolled away with
+   the page. (Its translucent rgba(244,247,248,.97) background suggests an overlay
+   header was intended but never wired up.) Added on request — see CHECKLIST.md §0,
+   which otherwise forbids unrequested visual changes.
+
+   Appended at the end rather than edited in place so the port above stays intact
+   and the file's existing cascade order is preserved.
+   ───────────────────────────────────────────────────────────────────────────── */
+.siteHeader{position:sticky;top:0;z-index:50}
+
+/* Anchor targets must clear the now-overlapping header: the site has 12 in-page
+   anchors (#journals, #books, #authors, #contact, #production, …) and
+   html{scroll-behavior:smooth} is set at the top of this file. Without these,
+   every hash link lands with its heading hidden behind the header.
+   Values match the computed header height at each breakpoint — 82px (line 135)
+   and 76px at <=720px (line 337). Keep them in sync if those heights change. */
+html{scroll-padding-top:82px}
+@media(max-width:720px){html{scroll-padding-top:76px}}
